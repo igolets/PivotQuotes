@@ -59,6 +59,8 @@ Press ENTER to finish.");
                 return;
             }
 
+            // show data read errors (lines were skipped)
+
             if (csvEngine.ErrorManager.HasErrors)
             {
                 Console.WriteLine("Following lines with errors were skipped:");
@@ -76,6 +78,8 @@ Press ENTER to finish.");
             }
             Console.WriteLine();
             Console.WriteLine("Validating source data...");
+
+            // some additional validation
 
             var validator = new FileFormatValidator(srcData);
             var fixedData = validator.ValidateAndFix();
@@ -114,7 +118,7 @@ Do you want to continue with wrong data skipped? [y/N]:");
             Console.WriteLine();
             Console.WriteLine("Creating pivot grid...");
 
-            // pivor headers in correct order ('Q3_07' is _before_ 'Q1_10')
+            // sort pivot headers in correct order ('Q3_07' is _before_ 'Q1_10')
             var pivotHeaders = fixedData
                 .Select(x => x.Shorthand)
                 .Distinct()
@@ -168,6 +172,10 @@ Press ENTER to finish.");
             Console.ReadLine();
         }
 
+        /// <summary>
+        /// Wait for confirmation (y/n) with default N
+        /// </summary>
+        /// <returns>true if user choose to continue</returns>
         private static bool WaitForContinueConfirmation()
         {
             while (true)

@@ -8,7 +8,7 @@ namespace PivotQuotes.Import
     public class ShorthandReader
     {
         /// <summary>
-        /// 
+        /// Read Shorthand and parse From and To dates from it
         /// </summary>
         /// <param name="shorthand"></param>
         /// <remarks>

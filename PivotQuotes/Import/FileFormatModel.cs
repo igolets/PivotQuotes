@@ -3,6 +3,9 @@ using FileHelpers;
 
 namespace PivotQuotes.Import
 {
+    /// <summary>
+    /// data model class for use with FileHelpers
+    /// </summary>
     [IgnoreFirst, DelimitedRecord(",")]
     public class FileFormatModel:ICloneable
     {

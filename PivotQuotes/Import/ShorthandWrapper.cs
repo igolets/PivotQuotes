@@ -1,5 +1,8 @@
 ﻿namespace PivotQuotes.Import
 {
+    /// <summary>
+    /// Utility class for sorting by Shorthand. Doed not throw exceptions.
+    /// </summary>
     public class ShorthandWrapper
     {
         public ShorthandWrapper(string shorthand)
