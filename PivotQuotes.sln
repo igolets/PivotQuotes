@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotQuotes", "PivotQuotes\PivotQuotes.csproj", "{8D15D797-DD4A-4A94-834B-B30E536964F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PivotQuotes.Tests", "PivotQuotes.Tests\PivotQuotes.Tests.csproj", "{0F07D45F-B3B9-400E-ADF3-3EA5DB0A6AD8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D15D797-DD4A-4A94-834B-B30E536964F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D15D797-DD4A-4A94-834B-B30E536964F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D15D797-DD4A-4A94-834B-B30E536964F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D15D797-DD4A-4A94-834B-B30E536964F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F07D45F-B3B9-400E-ADF3-3EA5DB0A6AD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F07D45F-B3B9-400E-ADF3-3EA5DB0A6AD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F07D45F-B3B9-400E-ADF3-3EA5DB0A6AD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F07D45F-B3B9-400E-ADF3-3EA5DB0A6AD8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93C9F22E-C1A2-41F5-AEA2-E81B6A7D0CA0}
+	EndGlobalSection
+EndGlobal
