@@ -45,7 +45,19 @@ Press ENTER to finish.");
             var csvEngine = new FileHelperEngine<FileFormatModel>();
             csvEngine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
 
-            var srcData = csvEngine.ReadFile(args[0]);
+            FileFormatModel[] srcData;
+            try
+            {
+                srcData = csvEngine.ReadFile(args[0]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($@"There was a problem opening source file. {ex.Message}
+
+Press ENTER to finish.");
+                Console.ReadLine();
+                return;
+            }
 
             if (csvEngine.ErrorManager.HasErrors)
             {
