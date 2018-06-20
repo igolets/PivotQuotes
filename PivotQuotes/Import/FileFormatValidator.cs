@@ -46,11 +46,9 @@ namespace PivotQuotes.Import
             var validationErrors = new List<string>();
             var validationWarnings = new List<string>();
             var fixedData = new List<FileFormatModel>();
-            var lineNumber = 1; // logic will start from line 2 as line 1 is headers
 
             foreach (var model in _input)
             {
-                lineNumber++;
                 var modelCopy = (FileFormatModel)model.Clone();
 
                 if (!modelCopy.From.HasValue
@@ -59,30 +57,30 @@ namespace PivotQuotes.Import
                     && !modelCopy.Price.HasValue
                     && string.IsNullOrWhiteSpace(modelCopy.Shorthand))
                 {
-                    validationWarnings.Add($"Line {lineNumber} is empty");
+                    validationWarnings.Add($"Line {modelCopy.LineNumber} is empty");
                     continue; // skip empty lines
                 }
 
                 if (!modelCopy.Price.HasValue || modelCopy.Price == 0)
                 {
-                    validationErrors.Add($"Line {lineNumber} has empty price, can not recover");
+                    validationErrors.Add($"Line {modelCopy.LineNumber} has empty price, can not recover");
                     continue; // skip line with error
                 }
 
                 if (!modelCopy.ObservationDate.HasValue)
                 {
-                    validationErrors.Add($"Line {lineNumber} has empty ObservationDate, can not recover");
+                    validationErrors.Add($"Line {modelCopy.LineNumber} has empty ObservationDate, can not recover");
                     continue; // skip line with error
                 }
 
                 if (modelCopy.ObservationDate.Value.Year < Settings.MinYear)
                 {
-                    validationWarnings.Add($"Line {lineNumber} has suspicious ObservationDate '{modelCopy.ObservationDate:dd/MM/yyyy}'");
+                    validationWarnings.Add($"Line {modelCopy.LineNumber} has suspicious ObservationDate '{modelCopy.ObservationDate:dd/MM/yyyy}'");
                 }
 
                 if (string.IsNullOrEmpty(modelCopy.Shorthand))
                 {
-                    validationErrors.Add($"Line {lineNumber} has empty Shorthand, can not recover");
+                    validationErrors.Add($"Line {modelCopy.LineNumber} has empty Shorthand, can not recover");
                     continue; // skip line with error
                 }
 
@@ -94,7 +92,7 @@ namespace PivotQuotes.Import
                 }
                 catch (Exception)
                 {
-                    validationErrors.Add($"Line {lineNumber} has incorrect Shorthand");
+                    validationErrors.Add($"Line {modelCopy.LineNumber} has incorrect Shorthand");
                     continue; // skip line with error
                 }
 
@@ -104,21 +102,21 @@ namespace PivotQuotes.Import
                 if (!modelCopy.From.HasValue)
                 {
                     modelCopy.From = shRd.From;
-                    validationWarnings.Add($"Line {lineNumber} recovered From using Shorthand");
+                    validationWarnings.Add($"Line {modelCopy.LineNumber} recovered From using Shorthand");
                 }
                 else if (modelCopy.From != shRd.From)
                 {
-                    validationWarnings.Add($"Line {lineNumber} has suspicious From '{modelCopy.From:dd/MM/yyyy}' for Shorthand '{modelCopy.Shorthand}'");
+                    validationWarnings.Add($"Line {modelCopy.LineNumber} has suspicious From '{modelCopy.From:dd/MM/yyyy}' for Shorthand '{modelCopy.Shorthand}'");
                 }
                 
                 if (!modelCopy.To.HasValue)
                 {
                     modelCopy.To = shRd.To;
-                    validationWarnings.Add($"Line {lineNumber} recovered To using Shorthand");
+                    validationWarnings.Add($"Line {modelCopy.LineNumber} recovered To using Shorthand");
                 }
                 else if (modelCopy.To != shRd.To)
                 {
-                    validationWarnings.Add($"Line {lineNumber} has suspicious To '{modelCopy.To:dd/MM/yyyy}' for Shorthand '{modelCopy.Shorthand}'");
+                    validationWarnings.Add($"Line {modelCopy.LineNumber} has suspicious To '{modelCopy.To:dd/MM/yyyy}' for Shorthand '{modelCopy.Shorthand}'");
                 }
 
                 fixedData.Add(modelCopy);

@@ -9,6 +9,9 @@ namespace PivotQuotes.Import
     [IgnoreFirst, DelimitedRecord(",")]
     public class FileFormatModel:ICloneable
     {
+        [FieldHidden]
+        public int LineNumber;
+
         [FieldConverter(ConverterKind.Date, "dd/MM/yyyy")]
         public DateTime? ObservationDate;
 
@@ -30,6 +33,7 @@ namespace PivotQuotes.Import
         {
             var copy = new FileFormatModel
             {
+                LineNumber = LineNumber,
                 ObservationDate = ObservationDate,
                 Shorthand = Shorthand,
                 From = From,

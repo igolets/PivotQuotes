@@ -44,6 +44,7 @@ Press ENTER to finish.");
 
             var csvEngine = new FileHelperEngine<FileFormatModel>();
             csvEngine.ErrorManager.ErrorMode = ErrorMode.SaveAndContinue;
+            csvEngine.AfterReadRecord += CsvEngine_AfterReadRecord;
 
             FileFormatModel[] srcData;
             try
@@ -170,6 +171,16 @@ Do you want to continue with wrong data skipped? [y/N]:");
 
 Press ENTER to finish.");
             Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Store original line number to display in messages
+        /// </summary>
+        /// <param name="engine"></param>
+        /// <param name="e"></param>
+        private static void CsvEngine_AfterReadRecord(EngineBase engine, FileHelpers.Events.AfterReadEventArgs<FileFormatModel> e)
+        {
+            e.Record.LineNumber = engine.LineNumber;
         }
 
         /// <summary>
